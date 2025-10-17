@@ -1,11 +1,12 @@
-# Use an official Maven + Java image to build your app
+# Use Maven to build the JAR
 FROM maven:3.9.6-eclipse-temurin-17 AS build
 WORKDIR /app
 COPY . .
-RUN mvn clean package
+RUN mvn clean package -DskipTests
 
-# Run the packaged WAR using webapp-runner
+# Use lightweight JDK image to run the JAR
 FROM eclipse-temurin:17-jdk
 WORKDIR /app
-COPY --from=build /app/target /app
-CMD ["java", "-jar", "dependency/webapp-runner.jar", "--port", "8080", "imgurlcon.war"]
+COPY --from=build /app/target/*.jar app.jar
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "app.jar"]
