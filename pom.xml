@@ -4,12 +4,18 @@
                              http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.example</groupId>
-  <artifactId>yourapp</artifactId>
+  <artifactId>imgurlcon</artifactId>
   <version>1.0</version>
   <packaging>jar</packaging>
 
+  <repositories>
+    <repository>
+      <id>jitpack.io</id>
+      <url>https://jitpack.io</url>
+    </repository>
+  </repositories>
+
   <dependencies>
-    <!-- WebApp Runner (Mini Tomcat) -->
     <dependency>
       <groupId>com.github.jsimone</groupId>
       <artifactId>webapp-runner</artifactId>
